@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roleta do Chamado Misterioso</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Roleta do Chamado Misterioso</h1>
+        <button id="spinButton">Girar a Roleta</button>
+        <h2 id="result"></h2>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $("#spinButton").click(function(){
+                $.getJSON('/spin', function(data){
+                    $("#result").text("E o chamado vai para... " + data.name + "!");
+                });
+            });
+        });
+    </script>
+</body>
+</html>
